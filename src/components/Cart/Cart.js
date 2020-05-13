@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 const Card = (props) => {
     const card = props.card;
     //console.log(props);
@@ -8,7 +8,7 @@ const Card = (props) => {
     let total = 0;
     for (let i = 0; i < card.length; i++) {
         const product = card[i];
-        total = total + product.price*product.quantity;
+        total = total + product.price * product.quantity;
 
     }
     let shipping = 0;
@@ -33,9 +33,7 @@ const Card = (props) => {
                 <smal> Tax + vat: {tax}</smal>
             </p>
             <p>Total price: {Math.round(total + shipping + tax)}</p>
-            <Link to="/review">
-                <button className="main-button">Review Order</button>
-            </Link>
+           {props.children}
 
         </div>
     );
