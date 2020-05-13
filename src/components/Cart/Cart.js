@@ -1,16 +1,15 @@
 import React from 'react';
-
-
+import { Link } from 'react-router-dom';
 const Card = (props) => {
     const card = props.card;
-    // console.log(card);
-   // const total = card.reduce((total, prod) => total + prod.price * prod.quantity, 0);
+    //console.log(props);
+    // const total = card.reduce((total, prod) => total + prod.price * prod.quantity, 0);
 
-    let total=0;
-    for (let i = 0; i <card.length; i++) {
+    let total = 0;
+    for (let i = 0; i < card.length; i++) {
         const product = card[i];
-        total=total+product.price;
-        
+        total = total + product.price*product.quantity;
+
     }
     let shipping = 0;
     if (total > 35) {
@@ -34,7 +33,10 @@ const Card = (props) => {
                 <smal> Tax + vat: {tax}</smal>
             </p>
             <p>Total price: {Math.round(total + shipping + tax)}</p>
-            <button className="main-button">Review Order</button>
+            <Link to="/review">
+                <button className="main-button">Review Order</button>
+            </Link>
+
         </div>
     );
 };
