@@ -8,11 +8,11 @@ import happyImages from '../../images/giphy.gif'
 
 const Review = () => {
     const [cart, setCart] = useState([]);
-    const [orderPlaced,setOrderPlaced]=useState(false);
-    const handlePlaceOrder=()=>{
+    const [orderPlaced, setOrderPlaced] = useState(false);
+    const handlePlaceOrder = () => {
         setCart([]);
         setOrderPlaced(true);
-     processOrder();
+        processOrder();
     }
     const handleRemoveProduct = (productkey) => {
         const newCard = cart.filter(pd => pd.key !== productkey);
@@ -31,10 +31,10 @@ const Review = () => {
         //console.log(cardProducts);
         setCart(cardProducts);
     }, [])
-     let thanku;
-     if(orderPlaced){
-         thanku=<img src={happyImages} alt=""/>
-     }
+    let thanku;
+    if (orderPlaced) {
+        thanku = <img src={happyImages} alt="" />
+    }
 
     return (
         <div className="twin-container">
