@@ -52,6 +52,7 @@ const Review = () => {
                 <Card card={cart}>
                     <button onClick={handlePlaceOrder} className="main-button">Place Order</button>
                 </Card>
+        <h1>hello</h1>
             </div>
 
         </div>
