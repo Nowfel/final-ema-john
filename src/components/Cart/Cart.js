@@ -1,7 +1,10 @@
 import React from 'react';
+import { useAuth } from '../Login/Use-auth';
 
 const Card = (props) => {
     const card = props.card;
+    const auth=useAuth();
+    
     //console.log(props);
     // const total = card.reduce((total, prod) => total + prod.price * prod.quantity, 0);
 
