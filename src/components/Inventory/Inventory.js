@@ -3,7 +3,7 @@ import fakeData from '../../fakeData'
 
 const Inventory = () => {
     const handleAddInventory = ()=>{
-        const product = fakeData[0];
+        const product = fakeData;
         console.log(product);
         
         fetch('http://localhost:4200/addProduct', {
@@ -12,7 +12,7 @@ const Inventory = () => {
             headers: {
                "Content-type": "application/json"
             },
-            body:JSON.stringify(product),
+            body:JSON.stringify(fakeData),
         })
         .then(res => res.json())
         .then(data=>{
