@@ -13,6 +13,14 @@ const Shop = () => {
     //console.log(fakeData);
     const [products, setProducts] = useState([]);
     //console.log(products);
+    useEffect(()=>{
+        fetch('http://localhost:4200/products')
+        .then(res => res.json())
+        .then(data=>{
+            console.log(data);
+            setProducts(data)
+        });
+    },[])
     const [card, setCard] = useState([]);
     useEffect(() => {
         const savedCard = getDatabaseCart();
