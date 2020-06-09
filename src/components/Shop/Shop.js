@@ -9,9 +9,9 @@ import { Link } from 'react-router-dom';
 
 
 const Shop = () => {
-    const first11 = fakeData.slice(0, 12);
+    //const first11 = fakeData.slice(0, 12);
     //console.log(fakeData);
-    const [products, setProducts] = useState(first11);
+    const [products, setProducts] = useState([]);
     //console.log(products);
     const [card, setCard] = useState([]);
     useEffect(() => {
