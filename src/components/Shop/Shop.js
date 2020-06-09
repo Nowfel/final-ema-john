@@ -26,14 +26,17 @@ const Shop = () => {
         const savedCard = getDatabaseCart();
         const productKeys = Object.keys(savedCard);
 
-        const cardProducts = productKeys.map(key => {
-            const product = fakeData.find(pd => pd.key === key);
-            product.quantity = savedCard[key];
-            return product;
-        });
+        if(products.length>0){
+            const cardProducts = productKeys.map(key => {
+                const product = products.find(pd => pd.key === key);
+                product.quantity = savedCard[key];
+                return product;
+            });
+            setCard(cardProducts);
+        }
         //console.log(cardProducts);
-        setCard(cardProducts);
-    },[])
+        
+    },[products])
     const handleAddProduct = (product) => {
         const toBeAaddedKey = product.key;
         const sameProduct = card.find(pd => pd.key === toBeAaddedKey);
