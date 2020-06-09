@@ -3,7 +3,24 @@ import fakeData from '../../fakeData'
 
 const Inventory = () => {
     const handleAddInventory = ()=>{
-        console.log(fakeData[0]);
+        const product = fakeData[0];
+        console.log(product);
+        
+        fetch('http://localhost:4200/addProduct', {
+            method:'POST',
+            
+            headers: {
+               "Content-type": "application/json"
+            },
+            body:JSON.stringify(product),
+        })
+        .then(res => res.json())
+        .then(data=>{
+            console.log(data);
+        })
+
+
+
     }
     return (
         <div>
