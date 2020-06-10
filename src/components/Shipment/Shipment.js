@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import './Shipment.css'
 import { useAuth } from '../Login/Use-auth';
-import { getDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, processOrder } from '../../utilities/databaseManager';
 
 const Shipment = () => {
     const { register, handleSubmit, watch, errors } = useForm();
@@ -10,18 +10,20 @@ const Shipment = () => {
     const onSubmit = data =>{
 
         const saveCart = getDatabaseCart();
-        const orderInf = {email:auth.user.email, cart:saveCart};
-        fetch('http://localhost:4200/getProductByKey', {
+        const orderDetails = {email:auth.user.email, cart:saveCart};
+        fetch('http://localhost:4200/placeOrder', {
             method:'POST',
             
             headers: {
                "Content-type": "application/json"
             },
-            body:JSON.stringify(orderInf),
+            body:JSON.stringify(orderDetails),
         })
         .then(res => res.json())
         .then(data=>{
             console.log(data);
+            alert('ur order');
+            processOrder();
         })
 
     };
