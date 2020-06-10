@@ -10,7 +10,11 @@ const Shipment = () => {
     const onSubmit = data =>{
 
         const saveCart = getDatabaseCart();
-        const orderDetails = {email:auth.user.email, cart:saveCart};
+        const orderDetails = {
+            email:auth.user.email,
+             cart:saveCart,
+             shipment:data
+            };
         fetch('http://localhost:4200/placeOrder', {
             method:'POST',
             
