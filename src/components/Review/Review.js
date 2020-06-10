@@ -11,12 +11,12 @@ import { useAuth } from '../Login/Use-auth';
 const Review = () => {
     const auth=useAuth();
     const [cart, setCart] = useState([]);
-    const [orderPlaced, setOrderPlaced] = useState(false);
-    const handlePlaceOrder = () => {
-        setCart([]);
-        setOrderPlaced(true);
-        processOrder();
-    }
+    // const [orderPlaced, setOrderPlaced] = useState(false);
+    // const handlePlaceOrder = () => {
+    //     setCart([]);
+    //     setOrderPlaced(true);
+    //     processOrder();
+    // }
     const handleRemoveProduct = (productkey) => {
         const newCard = cart.filter(pd => pd.key !== productkey);
         setCart(newCard);
@@ -48,10 +48,10 @@ const Review = () => {
         //console.log(cardProducts);
         
     }, [])
-    let thanku;
-    if (orderPlaced) {
-        thanku = <img src={happyImages} alt="" />
-    }
+    // let thanku;
+    // if (orderPlaced) {
+    //     thanku = <img src={happyImages} alt="" />
+    // }
 
     return (
         <div className="twin-container">
@@ -62,7 +62,7 @@ const Review = () => {
                         handleRemoveProduct={handleRemoveProduct}
                     ></ReviewItem>)
                 }
-                {thanku}
+                {/* {thanku} */}
                 {
                     !cart.length&& <h1>your cart is empty. <a href="/shop">keep shoping</a> </h1>
                 }
