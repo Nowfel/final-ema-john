@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
+// import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Card from '../Cart/Cart';
 import happyImages from '../../images/giphy.gif'
@@ -25,14 +25,28 @@ const Review = () => {
     useEffect(() => {
         const savedCard = getDatabaseCart();//retrieve
         const productKeys = Object.keys(savedCard);
+        console.log(productKeys);
+        fetch('http://localhost:4200/getProductByKey', {
+            method:'POST',
+            
+            headers: {
+               "Content-type": "application/json"
+            },
+            body:JSON.stringify(productKeys),
+        })
+        .then(res => res.json())
+        .then(data=>{
+            console.log(data);
+            const cardProducts = productKeys.map(key => {
+                const product = data.find(pd => pd.key === key);
+                product.quantity = savedCard[key];
+                return product;
+        });
 
-        const cardProducts = productKeys.map(key => {
-            const product = fakeData.find(pd => pd.key === key);
-            product.quantity = savedCard[key];
-            return product;
+        setCart(cardProducts);
         });
         //console.log(cardProducts);
-        setCart(cardProducts);
+        
     }, [])
     let thanku;
     if (orderPlaced) {
