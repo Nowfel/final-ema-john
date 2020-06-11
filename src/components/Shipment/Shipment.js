@@ -2,11 +2,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import './Shipment.css'
 import { useAuth } from '../Login/Use-auth';
+import {loadStripe} from '@stripe/stripe-js';
+import {Elements} from '@stripe/react-stripe-js';
 import { getDatabaseCart, processOrder } from '../../utilities/databaseManager';
+import CheckoutForm from '../../CheckoutForm/CheckoutForm';
 
 const Shipment = () => {
     const { register, handleSubmit, watch, errors } = useForm();
     const auth = useAuth();
+    const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
     const onSubmit = data => {
 
         const saveCart = getDatabaseCart();
@@ -67,7 +71,12 @@ const Shipment = () => {
                     </form>
                 </div>
                 <div className="col md 6">
-                    
+                    <h4>
+                        payment information
+                        <Elements stripe={stripePromise}>
+                            <CheckoutForm></CheckoutForm>
+                        </Elements>
+                    </h4>
                 </div>
             </div>
         </div>
