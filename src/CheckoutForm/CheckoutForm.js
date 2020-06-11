@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {loadStripe} from '@stripe/stripe-js';
+// import ReactDOM from 'react-dom';
+// import {loadStripe} from '@stripe/stripe-js';
 import {
   CardElement,
-  Elements,
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
@@ -29,3 +28,4 @@ const CheckoutForm = () => {
     </form>
   );
 };
+export default CheckoutForm;
