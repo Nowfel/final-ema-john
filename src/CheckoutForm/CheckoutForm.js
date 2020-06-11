@@ -17,6 +17,7 @@ const CheckoutForm = () => {
       type: 'card',
       card: elements.getElement(CardElement),
     });
+    console.log(error,paymentMethod);
   };
 
   return (

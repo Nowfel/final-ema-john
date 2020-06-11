@@ -73,12 +73,10 @@ const Shipment = () => {
                     </form>
                 </div>
                 <div className="col md 6">
-                    <h4>
-                        payment information
-                        <Elements stripe={stripePromise}>
+                    <h4>payment information</h4>
+                         <Elements stripe={stripePromise}>
                             <CheckoutForm></CheckoutForm>
                         </Elements>
-                    </h4>
                 </div>
             </div>
         </div>
