@@ -38,7 +38,7 @@ const Shipment = () => {
             <div className="row">
                 <div className="col md 6">
                     <h3>
-                    shipment information
+                        shipment information
                     </h3>
 
                     <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
@@ -67,9 +67,7 @@ const Shipment = () => {
                     </form>
                 </div>
                 <div className="col md 6">
-                    <h4>
-                        psyment information
-                    </h4>
+                    
                 </div>
             </div>
         </div>
