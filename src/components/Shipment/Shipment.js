@@ -34,7 +34,8 @@ const Shipment = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                alert('ur order');
+                setShipmentInfoAdd(true);
+                //alert('ur order');
                 //processOrder();
             })
 
@@ -74,7 +75,7 @@ const Shipment = () => {
                         <input type="submit" />
                     </form>
                 </div>
-                <div className="col md 6" style={{display: shipmentInfoAdd ?'block' : 'none'}}>
+                <div className="col md 6" style={{  marginTop: '200px',display: shipmentInfoAdd ?'block' : 'none '}}>
                     <h4>payment information</h4>
                          <Elements stripe={stripePromise}>
                             <CheckoutForm></CheckoutForm>
