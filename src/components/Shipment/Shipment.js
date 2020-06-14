@@ -41,7 +41,7 @@ const Shipment = () => {
             .then(res => res.json())
             .then(order => {
                 //console.log(data);
-                setOrderId(order.id);
+                setOrderId(order._id);
 
 
                 
