@@ -10,18 +10,24 @@ import { useState } from 'react';
 
 const Shipment = () => {
     const { register, handleSubmit, watch, errors } = useForm();
-    const [shipmentInfoAdd, setShipmentInfoAdd] = useState(null);
+    const [shipmentInfo, setShipmentInfo] = useState(null);
     const auth = useAuth();
     const stripePromise = loadStripe('pk_test_51GstNME7XFOHi8LiRFBWJZ5U7eqVflqMTnfsmR8Dw9LSPXQjN008NQ01Z8ZudpAIsOY1oHoStI4lOaKE3bGcf7qC00vXtHtjQQ');
 
 
     const onSubmit = data => {
+        setShipmentInfo(data);
 
+
+    };
+     const handlePlaceOrder = (paymentMethod)=>{
+         
         const saveCart = getDatabaseCart();
         const orderDetails = {
             email: auth.user.email,
             cart: saveCart,
-            shipment: data
+            shipment: shipmentInfo,
+            paymentMethod:paymentMethod
         };
         fetch('http://localhost:4200/placeOrder', {
             method: 'POST',
@@ -34,18 +40,17 @@ const Shipment = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setShipmentInfoAdd(true);
+                
                 //alert('ur order');
                 //processOrder();
+                // usr gives tnku
             })
-
-    };
-
+     }
 
     return (
         <div className="container">
             <div className="row">
-                <div className="col md 6" style={{display: shipmentInfoAdd && 'none'}}>
+                <div className="col md 6" style={{display: shipmentInfo && 'none'}}>
                     <h3>
                         shipment information
                     </h3>
@@ -75,10 +80,10 @@ const Shipment = () => {
                         <input type="submit" />
                     </form>
                 </div>
-                <div className="col md 6" style={{  marginTop: '200px',display: shipmentInfoAdd ?'block' : 'none '}}>
+                <div className="col md 6" style={{  marginTop: '200px',display: shipmentInfo ?'block' : 'none '}}>
                     <h4>payment information</h4>
                          <Elements stripe={stripePromise}>
-                            <CheckoutForm></CheckoutForm>
+                            <CheckoutForm handlePlaceOrder={handlePlaceOrder}></CheckoutForm>
                         </Elements>
                 </div>
             </div>
