@@ -14,7 +14,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const handleSubmit = async (event) => {
+  const handlePlaceOrder = async (event,props) => {
     event.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
@@ -34,7 +34,7 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handlePlaceOrder}>
       <CardElement />
       <button type="submit" disabled={!stripe}>
         Pay

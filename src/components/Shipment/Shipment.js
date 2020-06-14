@@ -39,11 +39,14 @@ const Shipment = () => {
             body: JSON.stringify(orderDetails),
         })
             .then(res => res.json())
-            .then(data => {
-                console.log(data);
+            .then(order => {
+                //console.log(data);
+                setOrderId(order.id);
+
+
                 
                 //alert('ur order');
-                //processOrder();
+                processOrder();
                 // usr gives tnku
             })
      }
@@ -86,6 +89,13 @@ const Shipment = () => {
                          <Elements stripe={stripePromise}>
                             <CheckoutForm handlePlaceOrder={handlePlaceOrder}></CheckoutForm>
                         </Elements>
+                        <br/>
+                        {
+                            orderId && <div>
+                                <h3> Thank you for shoping with us </h3>
+                        <p> Your order id : {orderId}</p>
+                            </div>
+                        }
                 </div>
             </div>
         </div>
