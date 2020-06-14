@@ -11,6 +11,7 @@ import { useState } from 'react';
 const Shipment = () => {
     const { register, handleSubmit, watch, errors } = useForm();
     const [shipmentInfo, setShipmentInfo] = useState(null);
+    const [orderId,setOrderId] = useState(null);
     const auth = useAuth();
     const stripePromise = loadStripe('pk_test_51GstNME7XFOHi8LiRFBWJZ5U7eqVflqMTnfsmR8Dw9LSPXQjN008NQ01Z8ZudpAIsOY1oHoStI4lOaKE3bGcf7qC00vXtHtjQQ');
 
@@ -20,14 +21,14 @@ const Shipment = () => {
 
 
     };
-     const handlePlaceOrder = (paymentMethod)=>{
+     const handlePlaceOrder = (payment)=>{
          
         const saveCart = getDatabaseCart();
         const orderDetails = {
             email: auth.user.email,
             cart: saveCart,
             shipment: shipmentInfo,
-            paymentMethod:paymentMethod
+            payment:payment
         };
         fetch('http://localhost:4200/placeOrder', {
             method: 'POST',
