@@ -9,7 +9,7 @@ import CheckoutForm from '../../CheckoutForm/CheckoutForm';
 import { useState } from 'react';
 
 const Shipment = () => {
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit,errors } = useForm();
     const [shipmentInfo, setShipmentInfo] = useState(null);
     const [orderId,setOrderId] = useState(null);
     const auth = useAuth();

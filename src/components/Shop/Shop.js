@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import fakeData from '../../fakeData';
 import { useState } from 'react';
 import './Shop.css';
 import Card from '../Cart/Cart';

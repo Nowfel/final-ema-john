@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
 // import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Card from '../Cart/Cart';
-import happyImages from '../../images/giphy.gif'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Login/Use-auth';
 
 
 const Review = () => {
-    const auth=useAuth();
+    const auth = useAuth();
     const [cart, setCart] = useState([]);
     // const [orderPlaced, setOrderPlaced] = useState(false);
     // const handlePlaceOrder = () => {
@@ -23,30 +22,30 @@ const Review = () => {
         removeFromDatabaseCart(productkey)
     }
     useEffect(() => {
-        const savedCard = getDatabaseCart();//retrieve
+        const savedCard = getDatabaseCart(); //retrieve
         const productKeys = Object.keys(savedCard);
         console.log(productKeys);
-        fetch('http://localhost:4200/getProductByKey', {
-            method:'POST',
-            
-            headers: {
-               "Content-type": "application/json"
-            },
-            body:JSON.stringify(productKeys),
-        })
-        .then(res => res.json())
-        .then(data=>{
-            console.log(data);
-            const cardProducts = productKeys.map(key => {
-                const product = data.find(pd => pd.key === key);
-                product.quantity = savedCard[key];
-                return product;
-        });
+        fetch('http://localhost:4200/getProductsByKey', {
+            method: 'POST',
 
-        setCart(cardProducts);
-        });
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(productKeys),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const cardProducts = productKeys.map(key => {
+                    const product = data.find(pd => pd.key === key);
+                    product.quantity = savedCard[key];
+                    return product;
+                });
+
+                setCart(cardProducts);
+            });
         //console.log(cardProducts);
-        
+
     }, [])
     // let thanku;
     // if (orderPlaced) {
@@ -64,7 +63,7 @@ const Review = () => {
                 }
                 {/* {thanku} */}
                 {
-                    !cart.length&& <h1>your cart is empty. <a href="/shop">keep shoping</a> </h1>
+                    !cart.length && <h1>your cart is empty. <a href="/shop">keep shoping</a> </h1>
                 }
             </div>
             <div className="cart-container">
@@ -72,10 +71,10 @@ const Review = () => {
                 <Card card={cart}>
                     <Link to='/shipment'>
                         {
-                           auth.user?<button  className="main-button">Place Order</button>:
-                           <button  className="main-button">Pls login</button>
-                            
-                            }
+                            auth.user ? <button className="main-button">Place Order</button> :
+                                <button className="main-button">Pls login</button>
+
+                        }
                     </Link>
 
                 </Card>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import fakeData from '../../fakeData';
 import Product from '../Products/Products';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -14,7 +13,7 @@ const ProductDetails = () => {
     .then(data=>{
         setProduct(data)
     });
-   },[])
+   },[productkey])
     //console.log(product);
     return (
         <div>
