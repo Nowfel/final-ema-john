@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
-// import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Card from '../Cart/Cart';
 import { Link } from 'react-router-dom';
